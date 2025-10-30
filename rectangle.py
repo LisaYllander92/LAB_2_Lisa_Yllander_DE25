@@ -36,3 +36,11 @@ class Rectangle(Shapes):
     def area(self):
         return self.length * self.width
 
+    def is_square(slef):
+        pass
+
+    def __repr__():
+        pass
+
+    def __str__():
+        pass

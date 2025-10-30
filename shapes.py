@@ -2,7 +2,7 @@ from numbers import Number
 from abc import ABC, abstractmethod
 
 """
-
+Parent class
 """
 
 class Shapes:
