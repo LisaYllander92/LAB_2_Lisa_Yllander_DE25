@@ -1,12 +1,40 @@
 from numbers import Number
 from abc import ABC, abstractmethod
 
-"""
-Parent class
-"""
 
-class Shapes:
-    def __init__(self, x: float, y: float):
+class Shapes(ABC):
+    """
+    Abstract (ABC) Super class for all geometric shapes in the sub-classes.
+    The abstract methods enfoce common fuctionality for area, perimeter and representation.
+    It provides shared functionality such as position, translation,
+    and the comparison operators that can be implemented in the sub-classes.
+
+    Attributes:
+    - x (Number): coordnate for x-axis
+    - y (Number): coordinate for y-axis
+
+    Properties:
+    - x (self, value): Makes sure that 'x' is a number and returns a private value for x. 
+    - y (self, value): Makes sure that 'y' is a number and returns a private value for y.
+
+    Methods:
+    - translate(): Moves the shape with 'dx' along the x-axis 
+        and 'dy' along the y-axis
+    - __repr__(): abstract representation method
+    - __str__(): abstract representation method
+    """
+
+    def __init__(self, x: Number, y: Number):
+        """
+        Initializes 'x' and 'y', the center position of the shape.
+        
+        Parameters:
+        - x (Number): The x-coordinate
+        - y (Number): The y-coordinate 
+
+        Calling self.x and self.y for the property 'setter' to
+        ensure type validation
+        """
         self.x = x
         self.y = y
 
@@ -30,28 +58,63 @@ class Shapes:
             raise TypeError(f"'y' must be a number of an int or float, not {type(value)}")
         self._y = value
 
+    def translate(self, dx: Number, dy: Number):
+        if not isinstance(dx, Number) or not isinstance(dy, Number):
+            raise TypeError("Both 'dx' and 'dy' must be numbers")
+        
+        # Updates the position
+        self.x += dx
+        self.y += dy
+
+        return self 
+
+    """
+    Read-only properties for the objects perimeter and area.
+    Must be implemented in the subclasses. 
+    """
+    @property
+    @abstractmethod
+    def perimeter(self) -> Number:
+        pass
 
     @property
-    def perimeter(self):
+    @abstractmethod
+    def area(self) -> Number:
+        pass
+    
+    @abstractmethod
+    def __repr__(self) -> str:
         pass
 
-    def area(self):
+    @abstractmethod
+    def __str__(self) -> str:
         pass
 
-    def __eq__(self):
-        pass
+    """
+    Comparison operators that can be implemented in the subclasses.
+    Compares the area of shapes:
+    equal to: ==, less than: <, greater than: >, 
+    less or equal to: <= and greater or equal to: >=. 
+    """
 
-    def __lt__(self):
-        pass
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Shapes):
+            return NotImplemented
+        return self.area == other.area
 
-    def __gt__(self):
-        pass
+    def __lt__(self, other) -> bool:
+        if not isinstance(other, Shapes):
+            return NotImplemented
+        return self.area < other.area
 
-    def __le__(self):
-        pass
+    def __gt__(self, other) -> bool:
+        return self.area > other.area
 
-    def __ge__(self):
-        pass
+    def __le__(self, other) -> bool:
+        return self.area <= other.area
+
+    def __ge__(self, other) -> bool:
+        return self.area >= other.area
 
 
 
