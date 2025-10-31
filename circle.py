@@ -1,13 +1,14 @@
 #https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php
 
 from shapes import Shapes
-import math # to calculate pi
-from numbers import Number # to just make sure the value is a number
+import math # to calculate pi and use isclose
+from numbers import Number  # to just make sure the value is a number
 
 class Circle(Shapes):
     def __init__(self, x: Number, y: Number, radius: Number):
-        self.radius = radius
         super().__init__(x, y)
+        self.radius = radius
+        
 
     @property
     def radius(self):
@@ -29,10 +30,14 @@ class Circle(Shapes):
 
     # Check if the circle is a unit-circle (radius 1, center 0,0)
     def is_unit_circle(self) -> bool:
-        return self.radius == 1 and self.x == 0 and self.y == 0
-    
+        radius_ok = math.isclose(self.radius, 1,0)
+        x_ok = math.isclose(self.x, 0.0)
+        y_ok = math.isclose(self.y, 0.0)
+
+        return radius_ok, x_ok and y_ok
+         
     def __repr__(self) -> str:
         return f"Circle: x: {self.x}, y: {self.y} and radius: {self.radius}"
     
     def __str__(self) -> str:
-        print(f"The circle at ({self.x}, {self.y}) with radius: {self.radius} \nhas the area of:{self.area:.2f}")
+        f"The circle at ({self.x}, {self.y}) with radius: {self.radius} \nhas the area of:{self.area:.2f}"
