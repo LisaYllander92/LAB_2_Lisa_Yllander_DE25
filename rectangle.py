@@ -38,6 +38,18 @@ class Rectangle(Shapes):
     @property
     def area(self) -> Number:
         return self.length * self.width
+    
+    # Trying here insted of in base class
+    # starting by checking if 'other' is a rectangle
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Rectangle):
+            return NotImplemented
+            
+        self_sides = sorted([self.length, self.width])
+        other_sides = sorted([other.length, other.width])
+
+        return self_sides == other_sides
+
 
     def is_square(self) -> bool:
         return self.length == self.width

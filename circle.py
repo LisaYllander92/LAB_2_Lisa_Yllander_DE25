@@ -27,6 +27,13 @@ class Circle(Shapes):
     @property
     def area(self) -> Number:
         return math.pi * self.radius**2
+    
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Circle):
+            return NotImplemented
+        
+        return self.radius == other.radius
+        
 
     # Check if the circle is a unit-circle (radius 1, center 0,0)
     def is_unit_circle(self) -> bool:

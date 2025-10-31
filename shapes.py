@@ -97,10 +97,9 @@ class Shapes(ABC):
     less or equal to: <= and greater or equal to: >=. 
     """
 
+    @abstractmethod
     def __eq__(self, other) -> bool:
-        if not isinstance(other, Shapes):
-            return NotImplemented
-        return self.area == other.area
+        pass
 
     def __lt__(self, other) -> bool:
         if not isinstance(other, Shapes):
