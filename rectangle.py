@@ -3,7 +3,7 @@
 
 from shapes import Shapes
 from numbers import Number
-import math
+import math # needed for isclose()
 
 class Rectangle(Shapes):
     def __init__(self, x: Number, y: Number, length: Number, width: Number):
@@ -12,7 +12,7 @@ class Rectangle(Shapes):
 
         super().__init__(x, y)
 
-        
+    """Length properties"""
     @property
     def length(self):
         return self._length
@@ -22,6 +22,8 @@ class Rectangle(Shapes):
         if not isinstance(value, Number):
             raise TypeError(f"Length must be a valid number, not {type(value)}")
         self._length = value
+
+    """Width properties"""
 
     @property
     def width(self):
@@ -33,6 +35,8 @@ class Rectangle(Shapes):
             raise TypeError(f"Width must be a valid number, not {type(value)}")
         self._width = value
 
+    """Abstract properties"""
+
     @property
     def perimeter(self) -> Number:
         return 2 * (self.length + self.width)
@@ -41,21 +45,29 @@ class Rectangle(Shapes):
     def area(self) -> Number:
         return self.length * self.width
     
-    # Trying here insted of in base class
-    # starting by checking if 'other' is a rectangle
+    """Comparison operators"""
+
     def __eq__(self, other) -> bool:
+        """
+        Checks equality: Two rectangles are equal if they have
+        the same dimensions, regardless of order. 
+        Using math.isclose() to round numbers.
+        """
         if not isinstance(other, Rectangle):
             return NotImplemented
 
-        # sorted so it doesn't matter in what order, same sides = same form  
         self_sides = sorted([self.length, self.width])
         other_sides = sorted([other.length, other.width])
-        return self_sides == other_sides
+        
+        # Compares every pair in the sorted lists with math.isclose()
+        return all(math.isclose(a, b) for a, b in zip(self_sides, other_sides))
 
 
     def is_square(self) -> bool:
-        return self.length == self.width
+        """Checks if the rectangle is a square"""
+        return math.isclose(self.length == self.width)
 
+    """Representation"""
     def __repr__(self) -> str:
         return f"Rectangle ({self.x}, {self.y} with length: {self.length} and width: {self.width})"
 

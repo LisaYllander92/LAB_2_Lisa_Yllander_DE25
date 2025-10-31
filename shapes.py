@@ -93,14 +93,22 @@ class Shapes(ABC):
     """
     Comparison operators that can be implemented in the subclasses
     for comparing area of shapes are:
-    less than: '<', greater than: '>', 
+    not equal: '!=', less than: '<', greater than: '>', 
     less or equal to: '<=' and greater or equal to: '>='. 
     Equal to '==' must be implemented in sub-classes. 
     """
 
     @abstractmethod
     def __eq__(self, other) -> bool:
+        """Must be implemented in subclasses to define if to form are equal"""
         pass
+
+    # adding NOT equal, trying to fix the problem with rectangle
+    def __ne__(self, other) -> bool:
+        eq_result = self.__eq__(other)
+        if eq_result is NotImplemented:
+            return NotImplemented
+        return not eq_result 
 
     def __lt__(self, other) -> bool:
         if not isinstance(other, Shapes):
