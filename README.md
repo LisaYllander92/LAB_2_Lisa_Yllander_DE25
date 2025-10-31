@@ -1,1 +1,1 @@
-PUT UML here
+![UML LAB 2](UML_LAB2.png)
