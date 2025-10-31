@@ -9,7 +9,7 @@ class Circle(Shapes):
         self.radius = radius
         super().__init__(x, y)
 
-    """Radius properties"""
+    """ Radius properties """
     @property
     def radius(self):
         return self._radius
@@ -22,7 +22,7 @@ class Circle(Shapes):
             raise ValueError("Radius can't be negative")
         self._radius = value
 
-    """Abstract properties"""
+    """ Abstract properties """
     @property
     def perimeter(self) -> Number:
         return 2 * math.pi * self.radius
@@ -31,17 +31,18 @@ class Circle(Shapes):
     def area(self) -> Number:
         return math.pi * self.radius**2
     
-    """Operator overload"""
+    """
+    Operator overload for equality (==).
+    Two circles are equal if their radius are the same, 
+    using math.isclose to handle compaison of float-numbers.
+    """
     def __eq__(self, other) -> bool:
-        """Checks equality. Two circles with the same radius are equal"""
         if not isinstance(other, Circle):
-            return NotImplemented
-        
+            return NotImplemented  
         return math.isclose(self.radius == other.radius)
         
-    """ Unique method """
+    """ Unique method that checks if the circle is a unit-circle (radius 1, center 0,0) """
     def is_unit_circle(self) -> bool:
-        # Check if the circle is a unit-circle (radius 1, center 0,0)
         radius_ok = math.isclose(self.radius, 1.0)
         x_ok = math.isclose(self.x, 0.0)
         y_ok = math.isclose(self.y, 0.0)

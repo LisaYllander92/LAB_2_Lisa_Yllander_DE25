@@ -91,16 +91,14 @@ class Shapes(ABC):
         pass
 
     """
-    Comparison operators that can be implemented in the subclasses
-    for comparing area of shapes are:
-    not equal: '!=', less than: '<', greater than: '>', 
-    less or equal to: '<=' and greater or equal to: '>='. 
-    Equal to '==' must be implemented in sub-classes. 
+    Comparison operators implemented using operator overloading.
+    The methods __ne__,__lt__, __gt__, __le__, and __ge__ are implemented 
+    here based on 'self.area', providing a standard comparison.
+    The __eq__ method is abstract and must be defined in subclasses.
     """
 
     @abstractmethod
     def __eq__(self, other) -> bool:
-        """Must be implemented in subclasses to define if to form are equal"""
         pass
 
     # adding NOT equal, trying to fix the problem with rectangle

@@ -2,7 +2,7 @@
 # https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php
 
 from shapes import Shapes
-from numbers import Number
+from numbers import Number # To make sure the value is a number
 import math # needed for isclose()
 
 class Rectangle(Shapes):
@@ -12,7 +12,7 @@ class Rectangle(Shapes):
 
         super().__init__(x, y)
 
-    """Length properties"""
+    """ Length properties """
     @property
     def length(self):
         return self._length
@@ -23,7 +23,7 @@ class Rectangle(Shapes):
             raise TypeError(f"Length must be a valid number, not {type(value)}")
         self._length = value
 
-    """Width properties"""
+    """ Width properties """
 
     @property
     def width(self):
@@ -35,7 +35,7 @@ class Rectangle(Shapes):
             raise TypeError(f"Width must be a valid number, not {type(value)}")
         self._width = value
 
-    """Abstract properties"""
+    """ Abstract properties """
 
     @property
     def perimeter(self) -> Number:
@@ -45,14 +45,14 @@ class Rectangle(Shapes):
     def area(self) -> Number:
         return self.length * self.width
     
-    """Comparison operators"""
+    """ 
+    Operator overload for equality (==).
+    Checks equality: Two rectangles are equal if they have
+    the same dimensions, regardless of order. 
+    Using math.isclose() to handle comparison of float-numbers.
+    """
 
     def __eq__(self, other) -> bool:
-        """
-        Checks equality: Two rectangles are equal if they have
-        the same dimensions, regardless of order. 
-        Using math.isclose() to round numbers.
-        """
         if not isinstance(other, Rectangle):
             return NotImplemented
 
@@ -62,12 +62,11 @@ class Rectangle(Shapes):
         # Compares every pair in the sorted lists with math.isclose()
         return all(math.isclose(a, b) for a, b in zip(self_sides, other_sides))
 
-
+    """ Unique method that checks if the rectangle is a square """
     def is_square(self) -> bool:
-        """Checks if the rectangle is a square"""
         return math.isclose(self.length == self.width)
 
-    """Representation"""
+    """ Representation """
     def __repr__(self) -> str:
         return f"Rectangle ({self.x}, {self.y} with length: {self.length} and width: {self.width})"
 
