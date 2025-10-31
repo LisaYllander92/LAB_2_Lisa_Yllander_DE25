@@ -91,10 +91,11 @@ class Shapes(ABC):
         pass
 
     """
-    Comparison operators that can be implemented in the subclasses.
-    Compares the area of shapes:
-    equal to: ==, less than: <, greater than: >, 
-    less or equal to: <= and greater or equal to: >=. 
+    Comparison operators that can be implemented in the subclasses
+    for comparing area of shapes are:
+    less than: '<', greater than: '>', 
+    less or equal to: '<=' and greater or equal to: '>='. 
+    Equal to '==' must be implemented in sub-classes. 
     """
 
     @abstractmethod

@@ -3,14 +3,16 @@
 
 from shapes import Shapes
 from numbers import Number
+import math
 
 class Rectangle(Shapes):
     def __init__(self, x: Number, y: Number, length: Number, width: Number):
-        super().__init__(x, y)
         self.length = length
         self.width = width
-        
 
+        super().__init__(x, y)
+
+        
     @property
     def length(self):
         return self._length
@@ -44,19 +46,19 @@ class Rectangle(Shapes):
     def __eq__(self, other) -> bool:
         if not isinstance(other, Rectangle):
             return NotImplemented
-            
+
+        # sorted so it doesn't matter in what order, same sides = same form  
         self_sides = sorted([self.length, self.width])
         other_sides = sorted([other.length, other.width])
-
         return self_sides == other_sides
 
 
     def is_square(self) -> bool:
         return self.length == self.width
 
-    def __repr__(self) -> None:
+    def __repr__(self) -> str:
         return f"Rectangle ({self.x}, {self.y} with length: {self.length} and width: {self.width})"
 
     def __str__(self) -> str:
-        print(f"Rectangle with length: {self.length} and width: {self.width}, \nhas the area of: {self.area}")
+        return f"Rectangle with length: {self.length} and width: {self.width}, \nhas the area of: {self.area}"
         
