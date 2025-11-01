@@ -39,9 +39,9 @@ class Circle(Shapes):
     def __eq__(self, other) -> bool:
         if not isinstance(other, Circle):
             return NotImplemented  
-        return math.isclose(self.radius == other.radius)
+        return math.isclose(self.radius, other.radius)
         
-    """ Unique method that checks if the circle is a unit-circle (radius 1, center 0,0) """
+    """ Unique method that checks if the circle is a unit-circle (radius 1, center 0,0)"""
     def is_unit_circle(self) -> bool:
         radius_ok = math.isclose(self.radius, 1.0)
         x_ok = math.isclose(self.x, 0.0)

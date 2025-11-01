@@ -53,14 +53,17 @@ class Rectangle(Shapes):
     """
 
     def __eq__(self, other) -> bool:
-        if not isinstance(other, Rectangle):
+        print(f"Comparing {self.length}x{self.width} with {other.length}x{other.width}")
+        if type(other) is not type(self):
+        #if not isinstance(other, Rectangle):
             return NotImplemented
 
         self_sides = sorted([self.length, self.width])
         other_sides = sorted([other.length, other.width])
         
-        # Compares every pair in the sorted lists with math.isclose()
-        return all(math.isclose(a, b) for a, b in zip(self_sides, other_sides))
+        # Compares every pair in the sorted lists
+        return self_sides == other_sides
+    #all(math.isclose(a, b) for a, b in zip(self_sides, other_sides))
 
     """ Unique method that checks if the rectangle is a square """
     def is_square(self) -> bool:
