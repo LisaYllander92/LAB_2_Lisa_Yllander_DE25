@@ -3,7 +3,7 @@
 
 from shapes import Shapes
 from numbers import Number # To make sure the value is a number
-import math # needed for isclose()
+import math
 
 class Rectangle(Shapes):
     def __init__(self, x: Number, y: Number, length: Number, width: Number):
@@ -49,7 +49,6 @@ class Rectangle(Shapes):
     Operator overload for equality (==).
     Checks equality: Two rectangles are equal if they have
     the same dimensions, regardless of order. 
-    Using math.isclose() to handle comparison of float-numbers.
     """
 
     def __eq__(self, other) -> bool:
@@ -61,9 +60,7 @@ class Rectangle(Shapes):
         self_sides = sorted([self.length, self.width])
         other_sides = sorted([other.length, other.width])
         
-        # Compares every pair in the sorted lists
         return self_sides == other_sides
-    #all(math.isclose(a, b) for a, b in zip(self_sides, other_sides))
 
     """ Unique method that checks if the rectangle is a square """
     def is_square(self) -> bool:
