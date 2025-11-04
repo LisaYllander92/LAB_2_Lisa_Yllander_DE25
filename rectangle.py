@@ -72,7 +72,7 @@ class Rectangle(Shapes):
         return f"Rectangle ({self.x}, {self.y} with length: {self.length} and width: {self.width})"
 
     def __str__(self) -> str:
-        return f"Rectangle with length: {self.length} and width: {self.width}, \nhas the area of: {self.area}"
+        return f"Rectangle with length: {self.length} and width: {self.width}, has the area of: {self.area}"
         
     def draw(self):
         """
