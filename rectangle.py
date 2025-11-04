@@ -7,7 +7,7 @@ import math
 import matplotlib.pyplot as plt
 
 class Rectangle(Shapes):
-    def __init__(self, x: Number, y: Number, length: Number, width: Number):
+    def __init__(self, length: Number, width: Number, x: Number = 0, y: Number = 0):
         self.length = length
         self.width = width
 
@@ -74,3 +74,53 @@ class Rectangle(Shapes):
     def __str__(self) -> str:
         return f"Rectangle with length: {self.length} and width: {self.width}, \nhas the area of: {self.area}"
         
+    def draw(self):
+        """
+        Vissualizes the rectangle using Matplotlib
+        Sources: 
+        https://www.geeksforgeeks.org/python/how-to-draw-shapes-in-matplotlib-with-python/
+        https://www.statology.org/matplotlib-rectangle/
+        """
+
+        # Creating figure (the window) and axes (the plot area) using plt.subplots().
+        fig, ax = plt.subplots(1) 
+
+        # Determine starting position (Matplotlib's rectangle patch requiers
+        # the coordinates of the bottom-left corner).
+        # Calculation: center x - half length, center y - half width
+        x_start = self.x - self.length /2
+        y_start = self.y - self.width /2
+
+        # plt.Rectangle creates the object based on the 
+        # calculated start point and dimensions
+        rect_patch = plt.Rectangle(
+            (x_start, y_start), # Bottom left corner
+            self.length,
+            self.width,
+            color = 'green',
+            alpha = 0.5
+        )
+
+        # .add_artist() adds the rectangle shape to the plot.
+        ax.add_artist(rect_patch)
+
+        # .plot(..., 'ro') marks the center (self.x, self.y) with a red dot
+        ax.plot(self.x, self.y, 'ro') 
+
+        # Setting the plot limits to make sure the entire rectangle is visible.
+        margin_x = self.length * 0.2
+        margin_y = self.width * 0.2
+        ax.set_xlim(self.x - self.length / 2 - margin_x, self.x + self.length / 2 + margin_x)
+        ax.set_ylim(self.y - self.width / 2 - margin_y, self.y + self.width / 2 + margin_y)
+
+        # Display settings:
+        # ax.set_aspects('equal') controlls the form of the object (rectangle), so a square doesn't look lika a rectangle,
+        # making sure that the unit on the x-axis is the same as the unit on the y-axis.
+        #(adjustable = 'box') the plotting area will adjust to the dimensions of the figure.
+        ax.set_aspect('equal', adjustable = 'box')
+
+        plt.title(f"Rectangle: {self.length} x {self.width}, center = ({self.x}, {self.y})")
+        plt.xlabel("x-axis")
+        plt.ylabel("y-axis")
+        plt.grid(True)
+        plt.plot()

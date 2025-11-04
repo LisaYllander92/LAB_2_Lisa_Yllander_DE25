@@ -1,9 +1,10 @@
 #https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php
 
+
 from shapes import Shapes
 import math # to calculate pi and use isclose
 from numbers import Number  # to just make sure the value is a number
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt # To plot the shapes
 
 class Circle(Shapes):
     # Changed the standard value of x and y to 0
@@ -63,6 +64,7 @@ class Circle(Shapes):
         Visualizes the circle using Matplotlib. 
         Sources: 
         https://www.geeksforgeeks.org/python/how-to-draw-a-circle-using-matplotlib-in-python/
+        https://www.geeksforgeeks.org/python/how-to-draw-shapes-in-matplotlib-with-python/
         """
 
         # Creating figure (the window) and axes (the plot area) using plt.subplots().
