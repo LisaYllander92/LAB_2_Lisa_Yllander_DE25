@@ -4,6 +4,7 @@
 from shapes import Shapes
 from numbers import Number # To make sure the value is a number
 import math
+import matplotlib.pyplot as plt
 
 class Rectangle(Shapes):
     def __init__(self, x: Number, y: Number, length: Number, width: Number):

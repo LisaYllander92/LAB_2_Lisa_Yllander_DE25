@@ -3,9 +3,11 @@
 from shapes import Shapes
 import math # to calculate pi and use isclose
 from numbers import Number  # to just make sure the value is a number
+import matplotlib.pyplot as plt 
 
 class Circle(Shapes):
-    def __init__(self, x: Number, y: Number, radius: Number):
+    # Changed the standard value of x and y to 0
+    def __init__(self, radius: Number, x: Number = 0, y: Number = 0):
         self.radius = radius
         super().__init__(x, y)
 
@@ -55,3 +57,46 @@ class Circle(Shapes):
     
     def __str__(self) -> str:
         return f"The circle at ({self.x}, {self.y}) with radius: {self.radius} \nhas the area of:{self.area:.2f}"
+    
+    def draw(self):
+        """
+        Visualizes the circle using Matplotlib. 
+        Sources: 
+        https://www.geeksforgeeks.org/python/how-to-draw-a-circle-using-matplotlib-in-python/
+        """
+
+        # Creating figure (the window) and axes (the plot area) using plt.subplots().
+        fig, ax = plt.subplots(1)
+
+        # Setting the scale/plot limits to ensure the entire circle is visible.
+        # The limits are based on the center (self.x, self.y).
+        margin = self.radius * 1.5 # gives the circle some space
+        ax.set_xlim(self.x - margin, self.x + margin)
+        ax.set_ylim(self.y - margin, self.y + margin)
+
+        # plt.Circle creates the object (circle) to display
+        circle_patch = plt.Circle(
+            (self.x, self.y), # Center position (coordinates (x,y))
+            self.radius, # The radius
+            color = 'pink', # filled color
+            alpha = 0.5 # sets transparancy
+        )
+
+        # add_artist() adds the circle shape to the plot.
+        ax.add_artist(circle_patch) 
+
+        # .plot(..., 'ro') adds a red circle ('r') marker ('o') at the center (x, y).
+        # This visually confirms the center position set by the 'x' and 'y' attributes.
+        ax.plot(self.x, self.y, 'ro') 
+
+        # Display settings: 
+        # ax.set_aspects('equal') controlls the form of the object (circle),
+        # making sure that the unit on the x-axis is the same as the unit on the y-axis.
+        # (adjustable = 'box') the plotting area will adjust to the dimensions of the figure.
+        ax.set_aspect('equal', adjustable = 'box')
+
+        plt.title(f"Circle: radius = {self.radius}, center = ({self.x}, {self.y})")
+        plt.xlabel("X-axis")
+        plt.ylabel("Y-axis")
+        plt.grid(True)
+        plt.show()
