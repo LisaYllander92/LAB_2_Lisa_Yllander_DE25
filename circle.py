@@ -32,7 +32,8 @@ class Circle(Shapes):
 
     @property
     def area(self) -> Number:
-        return math.pi * self.radius**2
+        c_area = math.pi * self.radius**2
+        return round(c_area, 2) # unsing the round() function to round the area to 2 decimals
     
     """
     Operator overload for equality (==).

@@ -21,7 +21,9 @@ class Rectangle(Shapes):
     @length.setter
     def length(self, value):
         if not isinstance(value, Number):
-            raise TypeError(f"Length must be a valid number, not {type(value)}")
+            raise TypeError(f"Length must be a non-negative number, not {type(value)}")
+        if value < 0:
+            raise ValueError("Length can't be negative")
         self._length = value
 
     """ Width properties """
@@ -33,7 +35,9 @@ class Rectangle(Shapes):
     @width.setter
     def width(self, value):
         if not isinstance(value, Number):
-            raise TypeError(f"Width must be a valid number, not {type(value)}")
+            raise TypeError(f"Width must be a non-negative number, not {type(value)}")
+        if value < 0:
+            raise ValueError("Width can't be nagative")
         self._width = value
 
     """ Abstract properties """
@@ -65,7 +69,7 @@ class Rectangle(Shapes):
 
     """ Unique method that checks if the rectangle is a square """
     def is_square(self) -> bool:
-        return math.isclose(self.length == self.width)
+        return self.length == self.width
 
     """ Representation """
     def __repr__(self) -> str:
