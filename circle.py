@@ -1,31 +1,43 @@
-#https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php
+"""
+Sources used:
+- To create and structure my shapes and classes: https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php 
+- To draw the cricle using Matplotlib: https://www.geeksforgeeks.org/python/how-to-draw-a-circle-using-matplotlib-in-python/
+and https://www.geeksforgeeks.org/python/how-to-draw-shapes-in-matplotlib-with-python/
 
+"""
 
 from shapes import Shapes
 import math # to calculate pi and use isclose
-from numbers import Number  # to just make sure the value is a number
-import matplotlib.pyplot as plt # To plot the shapes
+from numbers import Number  # to make sure the value is a number
+import matplotlib.pyplot as plt # to plot the shapes
+
+"""
+This class is a sub-class that inheritence from the superclass 'Shapes'.
+The parameters in the __init__ is set to be a number, using the class 'Number' and with a starting value, his is to handle incorrct input.
+
+"""
 
 class Circle(Shapes):
-    # Changed the standard value of x and y to 0
-    def __init__(self, radius: Number, x: Number = 0, y: Number = 0):
+    def __init__(self, x: Number = 0, y: Number = 0, radius: Number = None):
         self.radius = radius
         super().__init__(x, y)
 
-    """ Radius properties """
+    """ Radius properties that handles different kinds of errors """
     @property
     def radius(self):
         return self._radius
     
     @ radius.setter
     def radius(self, value):
+        if value is None:
+            raise ValueError("You must put in a value for radius")
         if not isinstance(value, Number):
             raise TypeError(f"Radius must be a non-negative number, not {type(value).__name__}")
         if value < 0:
             raise ValueError("Radius can't be negative")
         self._radius = value
 
-    """ Abstract properties """
+    """ Abstract properties implemented for this specific class """
     @property
     def perimeter(self) -> Number:
         return 2 * math.pi * self.radius
@@ -37,8 +49,8 @@ class Circle(Shapes):
     
     """
     Operator overload for equality (==).
-    Two circles are equal if their radius are the same, 
-    using math.isclose to handle compaison of float-numbers.
+    Two circles are equal if they have the same radius 
+    Using math.isclose to handle comparison of float-numbers.
     """
     def __eq__(self, other) -> bool:
         if not isinstance(other, Circle):
@@ -60,13 +72,8 @@ class Circle(Shapes):
     def __str__(self) -> str:
         return f"The circle at ({self.x}, {self.y}) with radius: {self.radius} \nhas the area of:{self.area:.2f}"
     
+    """ Visualizes the circle using Matplotlib """
     def draw(self):
-        """
-        Visualizes the circle using Matplotlib. 
-        Sources: 
-        https://www.geeksforgeeks.org/python/how-to-draw-a-circle-using-matplotlib-in-python/
-        https://www.geeksforgeeks.org/python/how-to-draw-shapes-in-matplotlib-with-python/
-        """
 
         # Creating figure (the window) and axes (the plot area) using plt.subplots().
         fig, ax = plt.subplots(1)
