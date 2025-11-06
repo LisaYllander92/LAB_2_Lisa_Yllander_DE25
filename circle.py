@@ -1,11 +1,3 @@
-"""
-Sources used:
-- To create and structure my shapes and classes: https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php 
-- To draw the cricle using Matplotlib: https://www.geeksforgeeks.org/python/how-to-draw-a-circle-using-matplotlib-in-python/
-and https://www.geeksforgeeks.org/python/how-to-draw-shapes-in-matplotlib-with-python/
-
-"""
-
 from shapes import Shapes
 import math # to calculate pi and use isclose
 from numbers import Number  # to make sure the value is a number

@@ -1,10 +1,3 @@
-"""
-Sources used:
-- To create and structure my shapes and classes: https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php
-- To draw and plot the rectangles: https://www.geeksforgeeks.org/python/how-to-draw-shapes-in-matplotlib-with-python/
-and https://www.statology.org/matplotlib-rectangle/
-"""
-
 from shapes import Shapes
 from numbers import Number # To make sure the value is a number
 import math
