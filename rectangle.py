@@ -72,7 +72,7 @@ class Rectangle(Shapes):
 
     def __eq__(self, other) -> bool:
         """ Operator overload for equality (==). Rectangles are equal if they have
-        the same dimensions, regardless of order. """
+        the same dimensions, regardless of order, otherwise they are NOT equal"""
         print(f"Comparing {self.length}x{self.width} with {other.length}x{other.width}")
         #if type(other) is not type(self):
         if not isinstance(other, Rectangle):
