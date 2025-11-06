@@ -88,7 +88,7 @@ class Circle(Shapes):
         return f"Circle(x={self.x}, y={self.y}, radius={self.radius})"
     
     def __str__(self) -> str:
-        """ Returns a more 'human-readable' string representation. """
+        """ Returns a more "human-readable" string representation. """
         return f"The circle at ({self.x}, {self.y}) with radius: {self.radius} \nhas the area of:{self.area:.2f}"
     
     """ ---Visualization--- """
@@ -96,7 +96,7 @@ class Circle(Shapes):
         """ Visualizes the circle using Matplotlib. Plot limits are manually set 
             to ensure the entire shape is visible and centered. """
 
-        #1. Setup: Creates a Figure (window) and Axes (plot area).
+        # 1. Setup: Creates a Figure (window) and Axes (plot area).
         fig, ax = plt.subplots(1)
 
         # 2. Set Plot Limits 
